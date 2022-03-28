@@ -1,0 +1,127 @@
+{
+  "id": "post",
+  "label": "Post",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "Uid",
+          "placeholder": ""
+        },
+        "type": "UID"
+      },
+      "title": {
+        "config": {
+          "label": "Title",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "category": {
+        "config": {
+          "label": "Category",
+          "customtypes": [
+            "category"
+          ],
+          "select": "document"
+        },
+        "type": "Link"
+      },
+      "city": {
+        "config": {
+          "label": "City",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "state": {
+        "config": {
+          "label": "State",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "description": {
+        "config": {
+          "label": "Description",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+        },
+        "type": "StructuredText"
+      },
+      "image": {
+        "config": {
+          "label": "Image",
+          "constraint": {},
+          "thumbnails": []
+        },
+        "type": "Image"
+      },
+      "age": {
+        "config": {
+          "label": "Age",
+          "placeholder": "In Months"
+        },
+        "type": "Number"
+      },
+      "castrated": {
+        "config": {
+          "label": "Castrated",
+          "placeholder_false": "false",
+          "placeholder_true": "true",
+          "default_value": false
+        },
+        "type": "Boolean"
+      },
+      "vaccines": {
+        "config": {
+          "label": "Vaccines",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "userName": {
+        "config": {
+          "label": "User Name",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "userId": {
+        "config": {
+          "label": "User Id",
+          "placeholder": "Of Database"
+        },
+        "type": "Text"
+      },
+      "userContact": {
+        "config": {
+          "label": "User Contact",
+          "placeholder": "Tell"
+        },
+        "type": "Text"
+      },
+      "userEmail": {
+        "config": {
+          "label": "User Email",
+          "placeholder": ""
+        },
+        "type": "Text"
+      },
+      "gender": {
+        "config": {
+          "label": "Gender",
+          "placeholder": "",
+          "options": [
+            "Macho",
+            "Fêmea"
+          ]
+        },
+        "type": "Select"
+      }
+    }
+  }
+}

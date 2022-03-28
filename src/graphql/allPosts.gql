@@ -1,0 +1,9 @@
+query {
+  allPosts(where: { city: "Bragança Paulista" }) {
+    edges {
+      node {
+        title
+      }
+    }
+  }
+}
