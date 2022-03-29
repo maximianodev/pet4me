@@ -1,4 +1,4 @@
-import { Button, FormControl, FormLabel, Select } from '@chakra-ui/react'
+import { FormControl, FormLabel, Select } from '@chakra-ui/react';
 
 interface Address {
   sigla: string;
@@ -13,37 +13,38 @@ interface RegionInputProps {
   componentState: Address;
 }
 
-const RegionInput = ({ data, label, labelId, setComponentState, componentState }: RegionInputProps): JSX.Element => {
-  const handleSelectState = (event) => {
+const RegionInput = ({
+  data,
+  label,
+  labelId,
+  setComponentState,
+  componentState,
+}: RegionInputProps): JSX.Element => {
+  const handleSelectState = (event): void => {
     const searchStateSelected = data.find(item => {
-      return item.nome === event.target.value
-    })
+      return item.nome === event.target.value;
+    });
 
-    setComponentState(searchStateSelected)
-  }
+    setComponentState(searchStateSelected);
+  };
 
   return (
     <FormControl>
-      <FormLabel htmlFor={labelId}>
-        {label}
-      </FormLabel>
+      <FormLabel htmlFor={labelId}>{label}</FormLabel>
       <Select
         id={labelId}
         onChange={handleSelectState}
         value={componentState?.nome ?? ''}
       >
-        <option value=''></option>
+        <option value="" />
         {data.map(state => (
-          <option
-            value={state.nome}
-            key={state.nome}
-          >
+          <option value={state.nome} key={state.nome}>
             {state.nome}
           </option>
         ))}
       </Select>
     </FormControl>
-  )
-}
+  );
+};
 
-export default RegionInput
+export default RegionInput;

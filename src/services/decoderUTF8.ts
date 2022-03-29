@@ -1,3 +1,9 @@
+/* eslint-disable eqeqeq */
+/* eslint-disable func-names */
+/* eslint-disable no-var */
+/* eslint-disable no-bitwise */
+/* eslint-disable prettier/prettier */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 export function utf8Decode(utf8String) {
   if (typeof utf8String != 'string') throw new TypeError('parameter ‘utf8String’ is not a string');
   // note: decode 3-byte chars first as decoded 2-byte strings could appear to be 3-byte char!
