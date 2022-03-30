@@ -6,29 +6,7 @@ import { predicate } from '@prismicio/client';
 
 import { getPrismicClient } from '../../services/prismic';
 import { utf8Decode } from '../../services/decoderUTF8';
-
-interface PostContent {
-  heading: string;
-  body: {
-    text: string;
-  }[];
-}
-
-interface Post {
-  first_publication_date: string | null;
-  uid: string;
-  data: {
-    title: string;
-    banner: {
-      url: string;
-    };
-    author: string;
-    content: PostContent[];
-    image: {
-      url: string;
-    };
-  };
-}
+import { Post } from '../../@types/prismic';
 
 interface SearchProps {
   posts: Post[];
@@ -107,12 +85,13 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
 
   if (addressText) {
     const { city } = JSON.parse(addressText);
+    const cityUTF8 = utf8Decode(city);
 
     if (slug === 'all') {
       const prismic = getPrismicClient();
 
       const posts = await prismic.getAllByType('post', {
-        predicates: [predicate.at('my.post.city', utf8Decode(city))],
+        predicates: [predicate.at('my.post.city', cityUTF8)],
       });
 
       return { props: { posts } };

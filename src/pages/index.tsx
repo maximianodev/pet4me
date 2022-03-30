@@ -30,22 +30,6 @@ const Home = ({ states }: HomeProps): JSX.Element => {
   const router = useRouter();
 
   useEffect(() => {
-    const handleSetCountry = async (): Promise<void> => {
-      if (country.nome !== '') {
-        const data = {
-          city: country.nome,
-          state: state.nome,
-        };
-
-        localStorage.setItem('address', JSON.stringify(data));
-        document.cookie = `address=${JSON.stringify(data)};`;
-        router.push('/search/all');
-      }
-    };
-    handleSetCountry();
-  }, [country, router, state.nome]);
-
-  useEffect(() => {
     const handleSetState = async (): Promise<void> => {
       if (state.nome !== '') {
         const countiesData = await axios.get(
@@ -59,30 +43,67 @@ const Home = ({ states }: HomeProps): JSX.Element => {
     handleSetState();
   }, [state]);
 
+  useEffect(() => {
+    const handleSetCountry = async (): Promise<void> => {
+      if (country.nome !== '') {
+        const data = {
+          city: country.nome,
+          state: state.nome,
+        };
+
+        localStorage.setItem('address', JSON.stringify(data));
+        document.cookie = `address=${JSON.stringify(data)};`;
+        router.push('/search/all');
+      }
+    };
+
+    handleSetCountry();
+  }, [country, router, state?.nome]);
+
   return (
     <Flex w="100vw" h="100vh" align="center" justify="center">
       <Flex direction="column">
-        {state.nome !== '' ? (
-          <Flex align="end">
-            <Button onClick={() => setState(defaultValue)} size="md" mr="2">
-              <Icon as={FiChevronLeft} />
+        {state.nome === '' ? (
+          <RegionInput
+            label="Selecione seu Estado:"
+            labelId="state"
+            data={states}
+            setComponentState={setState}
+          />
+        ) : (
+          <>
+            <Button
+              onClick={() => setState(defaultValue)}
+              size="md"
+              fontWeight="regular"
+              fontSize="12px"
+              backgroundColor="transparent"
+              p="0"
+              h="auto"
+              w="auto"
+              minW="auto"
+              mb="2"
+              d="block"
+              alignSelf="flex-start"
+              _hover={{
+                backgroundColor: 'transparent',
+              }}
+              _active={{
+                backgroundColor: 'transparent',
+              }}
+            >
+              <Flex align="center" justify="center">
+                <Icon as={FiChevronLeft} mr="2" />
+                Voltar
+              </Flex>
             </Button>
             <RegionInput
               label="Selecione sua Cidade:"
               labelId="city"
               data={counties}
               setComponentState={setCountry}
-              componentState={country}
             />
-          </Flex>
-        ) : (
-          <RegionInput
-            label="Selecione seu Estado:"
-            labelId="state"
-            data={states}
-            setComponentState={setState}
-            componentState={state}
-          />
+          </>
         )}
       </Flex>
     </Flex>
